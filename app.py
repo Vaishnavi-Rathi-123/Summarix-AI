@@ -13,8 +13,9 @@ app = FastAPI(title = "Text Summarizer App", description="An API to summarize te
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Load T5 model and tokenizer
-model = T5ForConditionalGeneration.from_pretrained("./save_summary_model")
-tokenizer = T5Tokenizer.from_pretrained("./save_summary_model")
+MODEL_NAME = "vaishnavirathi/SummarixAI"
+model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
+tokenizer = T5Tokenizer.from_pretrained(MODEL_NAME)
 
 # Device
 if torch.backends.mps.is_available():
