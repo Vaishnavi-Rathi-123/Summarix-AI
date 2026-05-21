@@ -13,7 +13,7 @@ app = FastAPI(title = "Text Summarizer App", description="An API to summarize te
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Load T5 model and tokenizer
-MODEL_NAME = "vaishnavirathi/SummarixAI"
+MODEL_NAME = "google/flan-t5-small"
 model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
 tokenizer = T5Tokenizer.from_pretrained(MODEL_NAME)
 
