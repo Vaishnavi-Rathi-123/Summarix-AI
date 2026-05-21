@@ -1,7 +1,7 @@
 # Fast API
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
-from transformers import T5ForConditionalGeneration, T5Tokenizer
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
 import re
 from fastapi.templating import Jinja2Templates # UI 
@@ -13,9 +13,9 @@ app = FastAPI(title = "Text Summarizer App", description="An API to summarize te
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Load T5 model and tokenizer
-MODEL_NAME = "google/flan-t5-small"
-model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
-tokenizer = T5Tokenizer.from_pretrained(MODEL_NAME)
+MODEL_NAME = "sshleifer/distilbart-cnn-12-6"
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
 
 # Device
 if torch.backends.mps.is_available():
